@@ -1,0 +1,3 @@
+[submodule "vive-teleop-interface-container"]
+	path = vive-teleop-interface-container
+	url = git@github.com:otokatli/vive-teleop-interface-container.git
