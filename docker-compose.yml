@@ -28,7 +28,7 @@ services:
 
   vive_teleoperation:
     build: 
-      context: vive_teleop_interface_container
+      context: vive-teleop-interface-container
       dockerfile: Dockerfile
     environment:
       - "ROS_MASTER_URI=http://ros-master:11311"
