@@ -1,0 +1,38 @@
+version: '2.3'
+
+networks:
+  ros:
+    driver: bridge
+
+services:
+  ros-master:
+    image: ros:noetic-ros-core
+    command: stdbuf -o L roscore
+    networks:
+      - ros
+    restart: always
+
+  #kinova_kinematics:
+    #build:
+      #context: kinova_kinematics_container
+      #dockerfile: Dockerfile
+    #environment:
+     #- ip_address=192.168.1.16
+     #- gripper=robotiq_2f_85
+     #- GLOVEBOX_NAME=RAIN
+     #- ROBOT_1=RAIN_A
+     #- ROS_MASTER_URI=http://192.168.1.211:11311
+     #- ROS_HOSTNAME=192.168.1.112
+    #networks:
+      #- ros
+
+  vive_teleoperation:
+    build: 
+      context: vive_teleop_interface_container
+      dockerfile: Dockerfile
+    environment:
+      - "ROS_MASTER_URI=http://ros-master:11311"
+      - "ROS_HOSTNAME=vive_teleoperation"
+    networks:
+      - ros
+    restart: always
